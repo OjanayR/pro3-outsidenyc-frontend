@@ -5,5 +5,5 @@ export default function HomePage(props) {
                 HomePage
             </h1>
         </main>
-    )
-}
+    );
+};
