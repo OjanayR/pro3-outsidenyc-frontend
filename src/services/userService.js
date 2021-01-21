@@ -1,4 +1,4 @@
-import { setToken } from './tokenService';
+import { setToken, getUserFromToken, removeToken } from './tokenService';
 const BASE_URL = "http://localhost:3001/api/users"
 
 function signup(user) {
@@ -24,15 +24,15 @@ function login(credentials) {
     }).then(response => {
         if(response.ok) return response.json();
         throw new Error ('Bad Credentials');
-    }).then(({ token }) => setToken (token));   
+    }).then(({ token }) => setToken(token));   
 }
 
 function logout() {
-    
+    removeToken();   
 }
 
 function getUser() {
-    
+    return getUserFromToken();    
 }
 
 export {
