@@ -10,13 +10,13 @@ import SignupPage from './pages/SignupPage';
 
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 
-import {getUser, logout } from './services/userService';
+import { getUser, logout } from './services/userService';
 
 import './App.css';
 
 
 function App(props) {
-  const [userState, setUserState ] = useState({ user: getUser()});
+  const [ userState, setUserState ] = useState({ user: getUser()});
 
   function handleSignupOrLogin(){
     setUserState({ user: getUser() });
@@ -26,9 +26,10 @@ function App(props) {
 
   function handleLogout() {
     logout();
-    setUserState({ user:null });
+    setUserState({ user: null });
     props.history.push('/');
   }
+
   return (
     <div className="App">
       <Header user={userState.user} handleLogout={handleLogout} />
@@ -43,10 +44,10 @@ function App(props) {
         <Redirect to="/login" />
         } />
         <Route exact path="/signup" render={ props =>
-        <SignupPage />
+        <SignupPage handleSignupOrLogin={handleSignupOrLogin} />
         } />
         <Route exact path="/login" render={ props =>
-        <LoginPage />
+        <LoginPage handleSignupOrLogin={handleSignupOrLogin} />
         } />
       </Switch>
       <Footer />
@@ -54,5 +55,5 @@ function App(props) {
   );
 }
 
-export default App;
+export default withRouter(App);
 

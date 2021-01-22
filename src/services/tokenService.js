@@ -10,11 +10,16 @@ function removeToken() {
     localStorage.removeItem('token'); 
 }
 
+function getUserFromToken() {
+    const token = getToken();
+    return token ? JSON.parse(atob(token.split('.')[1])).user : null;
+  }
+
 function getToken() {
     let token = localStorage.getItem('token');
-    if (token) {
+    if(token) {
         const payload = JSON.parse(atob(token.split('.')[1]));
-        if (payload.exp < Date.now() / 1000) {
+        if(payload.exp < Date.now() / 1000) {
             localStorage.removeItem('token');
             token = null;
         }
@@ -22,14 +27,9 @@ function getToken() {
    return token; 
 }
 
-function getUserFromToken() {
-  const token = getToken();
-  return token ? JSON.parse(atob(token.split('.')[1])).user : null;
-}
-
 export {
     setToken,
     removeToken,
     getToken,
     getUserFromToken
-}
+};

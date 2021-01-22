@@ -15,8 +15,15 @@ export default function LoginPage(props) {
         }));
     }
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
+        event.preventDefault();
         if(!formValid()) return;
+        try {
+            await login(formState)
+            props.handleSignupOrLogin();
+        } catch (error) {
+            alert(error.message);
+        }
     }
 
     function formValid() {
@@ -26,7 +33,7 @@ export default function LoginPage(props) {
     return (
         <main className="Page">
             <h1>LoginPage</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <div className="col-sm-12">
                        <input onChange={handleChange} value={formState.email}name="email" placeholder="Email" className="form-control" type="email" /> 
