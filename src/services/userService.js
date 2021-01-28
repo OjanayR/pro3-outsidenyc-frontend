@@ -7,12 +7,14 @@ function signup(user) {
         headers: {
             'Content-Type' : 'Application/json'
         },
+
         body: JSON.stringify(user)
     }).then(response => {
         if(response.ok) return response.json();
         throw new Error ('Email already taken');
     }).then(({ token }) => setToken (token));
 }
+
 
 function login(credentials) {
     return fetch(BASE_URL + '/login', {

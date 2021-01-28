@@ -10,9 +10,12 @@ import SignupPage from './pages/SignupPage';
 
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 
+
+
 import { getUser, logout } from './services/userService';
 
 import './App.css';
+import './index.css';
 
 
 function App(props) {
@@ -21,7 +24,7 @@ function App(props) {
   function handleSignupOrLogin(){
     setUserState({ user: getUser() });
 
-    props.history.push('/dashbord');
+    props.history.push('/dashboard');
   }
 
   function handleLogout() {

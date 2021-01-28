@@ -5,7 +5,7 @@
     return (
         <header className="Header">
             <Link to="/">
-                <h1>Outside NYC</h1>
+                <h1>Temp Moodboard</h1>
             </Link>
             <nav>
                 <ul className="NavLinks">
@@ -18,7 +18,7 @@
                         :
                         <>
                         <li><Link to= "/signup">Sign Up</Link></li>
-                        <li><Link to="/login">Login</Link></li>
+                        <li><Link to= "/login">Login</Link></li>
                         </>
                     }
                 </ul>
